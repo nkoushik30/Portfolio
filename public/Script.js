@@ -104,8 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.style.borderColor = '#c5a028';
       this.style.transition = 'all 0.4s ease';
     });
-    
-    card.addEventListener('mouseleave', function(e) {
+  card.addEventListener('mouseleave', function(e) {
       this.style.boxShadow = '0 4px 20px rgba(81, 106, 31, 0.08), 0 0 1px #c5a028';
       this.style.borderColor = 'rgba(197, 160, 40, 0.2)';
     });
