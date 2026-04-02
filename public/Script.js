@@ -2,7 +2,7 @@
 // Add this to your HTML before the closing </body> tag
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+
   // ===== SMOOTH REVEAL ANIMATIONS ON SCROLL =====
   const observerOptions = {
     threshold: 0.1,
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body.insertBefore(particleContainer, body.firstChild);
 
     const colors = ['#c5a028', '#b87333', '#f3e5ab', '#e5dccd'];
-    
+
     for (let i = 0; i < 20; i++) {
       const particle = document.createElement('div');
       const size = Math.random() * 4 + 2;
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const delay = Math.random() * 5;
       const startX = Math.random() * 100;
       const endX = startX + (Math.random() * 20 - 10);
-      
+
       particle.style.cssText = `
         position: absolute;
         width: ${size}px;
@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         box-shadow: 0 0 ${size * 2}px ${colors[Math.floor(Math.random() * colors.length)]};
         animation: float${i} ${duration}s ease-in-out ${delay}s infinite;
       `;
-      
+
       particleContainer.appendChild(particle);
-      
+
       // Create unique animation for each particle
       const keyframes = `
         @keyframes float${i} {
@@ -86,35 +86,35 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       `;
-      
+
       const style = document.createElement('style');
       style.textContent = keyframes;
       document.head.appendChild(style);
     }
   };
-  
+
   createParticles();
 
   // ===== PREMIUM HOVER GLOW EFFECT =====
   const cards = document.querySelectorAll('.skills, .projects, .workshops, .education, .contact-info, .experience, .project-card');
-  
+
   cards.forEach(card => {
-    card.addEventListener('mouseenter', function(e) {
+    card.addEventListener('mouseenter', function (e) {
       this.style.boxShadow = '0 8px 40px rgba(197, 160, 40, 0.3), 0 0 60px rgba(184, 115, 51, 0.2)';
       this.style.borderColor = '#c5a028';
       this.style.transition = 'all 0.4s ease';
     });
-  card.addEventListener('mouseleave', function(e) {
+    card.addEventListener('mouseleave', function (e) {
       this.style.boxShadow = '0 4px 20px rgba(81, 106, 31, 0.08), 0 0 1px #c5a028';
       this.style.borderColor = 'rgba(197, 160, 40, 0.2)';
     });
-    
+
     // Spotlight effect following cursor
-    card.addEventListener('mousemove', function(e) {
+    card.addEventListener('mousemove', function (e) {
       const rect = this.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       this.style.background = `
         radial-gradient(circle 300px at ${x}px ${y}px, 
           rgba(197, 160, 40, 0.08), 
@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
         linear-gradient(135deg, #fdfbf7 0%, #f5f3ed 100%)
       `;
     });
-    
-    card.addEventListener('mouseleave', function(e) {
+
+    card.addEventListener('mouseleave', function (e) {
       this.style.background = 'linear-gradient(135deg, #fdfbf7 0%, #f5f3ed 100%)';
     });
   });
@@ -134,10 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalText = h1.textContent;
     h1.textContent = '';
     h1.style.opacity = '1';
-    
+
     let charIndex = 0;
     const typingSpeed = 80;
-    
+
     const typeWriter = () => {
       if (charIndex < originalText.length) {
         h1.textContent += originalText.charAt(charIndex);
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
           margin-left: 4px;
         `;
         h1.appendChild(cursor);
-        
+
         const blinkStyle = document.createElement('style');
         blinkStyle.textContent = `
           @keyframes blink {
@@ -162,26 +162,26 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         `;
         document.head.appendChild(blinkStyle);
-        
+
         // Remove cursor after 3 seconds
         setTimeout(() => cursor.remove(), 3000);
       }
     };
-    
+
     setTimeout(typeWriter, 500);
   }
 
   // ===== BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll('.btn');
-  
+
   buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function (e) {
       const ripple = document.createElement('span');
       const rect = this.getBoundingClientRect();
       const size = Math.max(rect.width, rect.height);
       const x = e.clientX - rect.left - size / 2;
       const y = e.clientY - rect.top - size / 2;
-      
+
       ripple.style.cssText = `
         position: absolute;
         width: ${size}px;
@@ -193,13 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
         pointer-events: none;
         animation: rippleEffect 0.6s ease-out;
       `;
-      
+
       this.appendChild(ripple);
-      
+
       setTimeout(() => ripple.remove(), 600);
     });
   });
-  
+
   const rippleStyle = document.createElement('style');
   rippleStyle.textContent = `
     @keyframes rippleEffect {
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.project-card, .highlight-box');
-    
+
     parallaxElements.forEach((element, index) => {
       const speed = 0.05 * (index + 1);
       const yPos = -(scrolled * speed);
@@ -229,12 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== SKILL CARDS STAGGER ANIMATION =====
   const skillLists = document.querySelectorAll('.skills ul li');
-  
+
   skillLists.forEach((item, index) => {
     item.style.opacity = '0';
     item.style.transform = 'translateX(-20px)';
     item.style.transition = `all 0.5s ease ${index * 0.1}s`;
-    
+
     setTimeout(() => {
       item.style.opacity = '1';
       item.style.transform = 'translateX(0)';
@@ -243,29 +243,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== GOLDEN SHIMMER EFFECT ON HEADINGS =====
   const headings = document.querySelectorAll('h2, h3');
-  
+
   headings.forEach(heading => {
-    heading.addEventListener('mouseenter', function() {
+    heading.addEventListener('mouseenter', function () {
       this.style.textShadow = '0 0 20px rgba(197, 160, 40, 0.6), 0 0 40px rgba(184, 115, 51, 0.4)';
       this.style.transition = 'text-shadow 0.3s ease';
     });
-    
-    heading.addEventListener('mouseleave', function() {
+
+    heading.addEventListener('mouseleave', function () {
       this.style.textShadow = 'none';
     });
   });
 
   // ===== SMOOTH LINK UNDERLINE ANIMATION =====
   const links = document.querySelectorAll('a:not(.btn)');
-  
+
   links.forEach(link => {
-    link.addEventListener('mouseenter', function() {
+    link.addEventListener('mouseenter', function () {
       this.style.transform = 'translateY(-2px)';
       this.style.textShadow = '0 2px 8px rgba(197, 160, 40, 0.3)';
       this.style.transition = 'all 0.3s ease';
     });
-    
-    link.addEventListener('mouseleave', function() {
+
+    link.addEventListener('mouseleave', function () {
       this.style.transform = 'translateY(0)';
       this.style.textShadow = 'none';
     });
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Math.random() > 0.95) {
         const sparkle = document.createElement('div');
         const size = Math.random() * 8 + 4;
-        
+
         sparkle.style.cssText = `
           position: absolute;
           width: ${size}px;
@@ -303,9 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
           animation: sparkleAnim 0.8s ease-out forwards;
           box-shadow: 0 0 ${size * 2}px #c5a028;
         `;
-        
+
         sparkleContainer.appendChild(sparkle);
-        
+
         setTimeout(() => sparkle.remove(), 800);
       }
     });
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== CONTACT BUTTON PULSE ANIMATION =====
   const contactButtons = document.querySelectorAll('.btn');
-  
+
   contactButtons.forEach(btn => {
     setInterval(() => {
       btn.style.animation = 'pulse 2s ease-in-out';
@@ -420,18 +420,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== SECTION NUMBER COUNTER ANIMATION =====
   const animateNumbers = () => {
     const numberElements = document.querySelectorAll('.highlight-box');
-    
+
     numberElements.forEach(element => {
       const text = element.textContent;
       const matches = text.match(/\d+/g);
-      
+
       if (matches) {
         matches.forEach(match => {
           const targetNumber = parseInt(match);
           if (targetNumber > 10) {
             let currentNumber = 0;
             const increment = targetNumber / 50;
-            
+
             const counter = setInterval(() => {
               currentNumber += increment;
               if (currentNumber >= targetNumber) {
